@@ -5,6 +5,7 @@ volumes:
   caddy-data:
   caddy-config:
   valkey-data:
+  portainer_data:
 
 x-n8n: &service-n8n
   image: n8nio/n8n:latest
@@ -150,3 +151,13 @@ services:
       - "/etc/ngrok.yml"
     volumes:
       - ./ngrok.yml:/etc/ngrok.yml
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    ports:
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data

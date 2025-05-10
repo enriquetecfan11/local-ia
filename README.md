@@ -13,6 +13,7 @@ The Local AI Stack is a Docker-based solution that combines various AI services 
 - **Supabase**: Optional open-source Firebase alternative
 - **Redis (Valkey)**: In-memory database for caching
 - **Postgres**: Relational database
+g
 
 ## Prerequisites
 
@@ -25,12 +26,14 @@ The Local AI Stack is a Docker-based solution that combines various AI services 
 ### Installation
 
 1. Clone this repository:
+
    ```bash
    git clone <repository-url>
    cd local-ai-packaged
    ```
 
 2. Create a `.env` file in the root directory with the following variables:
+
    ```
    # Required environment variables
    POSTGRES_PASSWORD=your_secure_password
@@ -51,11 +54,13 @@ The Local AI Stack is a Docker-based solution that combines various AI services 
    ```
 
 3. Start the services:
+
    ```bash
    python start_services.py
    ```
-   
+
    Or use the newer version:
+
    ```bash
    python start_services_new.py
    ```
@@ -64,28 +69,13 @@ The Local AI Stack is a Docker-based solution that combines various AI services 
 
 | Service    | Default URL              | Description                        |
 |------------|--------------------------|-----------------------------------|
-| n8n        | http://localhost:8001    | Workflow automation platform       |
-| Flowise    | http://localhost:8003    | AI workflow builder               |
-| Supabase   | http://localhost:8005    | Open source Firebase alternative  |
-| Qdrant     | http://localhost:6333    | Vector database                   |
+| n8n        | <http://localhost:8001>    | Workflow automation platform       |
+| Flowise    | <http://localhost:8003>    | AI workflow builder               |
+| Supabase   | <http://localhost:8005>    | Open source Firebase alternative  |
+| Qdrant     | <http://localhost:6333>    | Vector database                   |
 | Postgres   | localhost:5433           | Database (not exposed via Caddy)   |
 | Ngrok      | -                        | Secure tunnels to localhost        |
-
-## Python Integration
-
-The project includes `n8n_pipe.py` for integrating n8n with Python applications:
-
-```python
-from n8n_pipe import Pipe
-
-# Initialize the pipe
-pipe = Pipe()
-pipe.valves.n8n_url = "your_n8n_webhook_url"
-pipe.valves.n8n_bearer_token = "your_token"
-
-# Use the pipe in your application
-response = await pipe(user_input)
-```
+| Portainer  | <https://localhost:9443>   | Docker container management UI    |
 
 ## Configuration
 
@@ -96,6 +86,17 @@ Edit the `Caddyfile` to add or modify services. The default configuration proxie
 ### Docker Compose
 
 The `docker-compose.yml` file defines all services. You can modify resource limits, add volumes, or configure environment variables as needed.
+
+### Portainer
+
+The project includes Portainer, a web-based Docker management UI that allows you to:
+
+- Manage Docker containers, images, networks, and volumes
+- Deploy applications with a user-friendly interface
+- Monitor container health and resource usage
+- Access container logs and console
+
+Access Portainer at [https://localhost:9443](https://localhost:9443) after starting the services.
 
 ### Ngrok Configuration
 
@@ -109,7 +110,8 @@ To configure Ngrok:
 
 1. Edit the `ngrok.yml` file to customize your tunnels
 2. Use the following environment variables in your `.env` file if needed:
-   ```
+
+   ```bash
    NGROK_AUTHTOKEN=your_ngrok_auth_token
    ```
 
