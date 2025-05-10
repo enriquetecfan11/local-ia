@@ -5,8 +5,8 @@ volumes:
   valkey-data:
   postgres-data:
   portainer_data:
-  caddy_storage:
-  caddy_data:
+  caddy-data:
+  caddy-config:
 
 x-n8n: &service-n8n
   image: n8nio/n8n:next
