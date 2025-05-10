@@ -130,10 +130,6 @@ services:
     restart: unless-stopped
     environment:
       - NGROK_AUTHTOKEN=${NGROK_TOKEN}
-      - N8N_DIAGNOSTICS_ENABLED=false
-      - N8N_PERSONALIZATION_ENABLED=false
-      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-      - N8N_USER_MANAGEMENT_JWT_SECRET=${N8N_USER_MANAGEMENT_JWT_SECRET}
     command:
       - "start"
       - "--all"
