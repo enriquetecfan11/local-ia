@@ -4,8 +4,8 @@ tunnels:
   n8n:
     proto: http
     addr: n8n:5678
-    domain: ${NGROK_SUBDOMAIN}
+    domain: oddly-capital-caribou.ngrok-free.app
   flowise:
     proto: http
     addr: flowise:3001
-    domain: ${NGROK_SUBDOMAIN}
+    domain: oddly-capital-caribou.ngrok-free.app

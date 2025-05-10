@@ -19,7 +19,7 @@ x-n8n: &service-n8n
     - N8N_PERSONALIZATION_ENABLED=false
     - N8N_ENCRYPTION_KEY
     - N8N_USER_MANAGEMENT_JWT_SECRET
-    - WEBHOOK_URL=${N8N_HOSTNAME:+https://}${N8N_HOSTNAME:-http://localhost:5678}
+    - WEBHOOK_URL=http://oddly-capital-caribou.ngrok-free.app
 
 services:
   flowise:
@@ -34,17 +34,7 @@ services:
       - "host.docker.internal:host-gateway"        
     volumes:
         - ~/.flowise:/root/.flowise
-    entrypoint: /bin/sh -c "sleep 3; flowise start"
-
-  n8n-import:
-    <<: *service-n8n
-    container_name: n8n-import
-    entrypoint: /bin/sh
-    command:
-      - "-c"
-      - "n8n import:credentials --separate --input=/backup/credentials && n8n import:workflow --separate --input=/backup/workflows"
-    volumes:
-      - ./n8n/backup:/backup  
+    entrypoint: /bin/sh -c "sleep 3; flowise start" 
 
   n8n:
     <<: *service-n8n
