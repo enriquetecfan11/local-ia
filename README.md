@@ -69,6 +69,7 @@ The Local AI Stack is a Docker-based solution that combines various AI services 
 | Supabase   | http://localhost:8005    | Open source Firebase alternative  |
 | Qdrant     | http://localhost:6333    | Vector database                   |
 | Postgres   | localhost:5433           | Database (not exposed via Caddy)   |
+| Ngrok      | -                        | Secure tunnels to localhost        |
 
 ## Python Integration
 
@@ -96,6 +97,24 @@ Edit the `Caddyfile` to add or modify services. The default configuration proxie
 
 The `docker-compose.yml` file defines all services. You can modify resource limits, add volumes, or configure environment variables as needed.
 
+### Ngrok Configuration
+
+The project includes Ngrok for creating secure tunnels to your localhost, making it possible to expose your local services to the internet securely. This is particularly useful for:
+
+- Testing webhooks without deploying to production
+- Sharing your local development environment with others
+- Accessing your services from mobile devices or other networks
+
+To configure Ngrok:
+
+1. Edit the `ngrok.yml` file to customize your tunnels
+2. Use the following environment variables in your `.env` file if needed:
+   ```
+   NGROK_AUTHTOKEN=your_ngrok_auth_token
+   ```
+
+3. Access your tunneled services through the URLs provided in the Ngrok dashboard or terminal output when the service starts.
+
 ## Development
 
 For local development, you can access:
@@ -109,6 +128,7 @@ For local development, you can access:
 If you encounter issues:
 
 1. Check Docker container logs:
+
    ```bash
    docker logs n8n
    docker logs flowise
@@ -117,6 +137,7 @@ If you encounter issues:
 2. Make sure all required environment variables are set in the `.env` file.
 
 3. If Supabase fails to start, try running the start script with the `--skip-supabase` flag:
+
    ```bash
    python start_services.py --skip-supabase
    ```
@@ -131,3 +152,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Flowise: [https://github.com/FlowiseAI/Flowise](https://github.com/FlowiseAI/Flowise)
 - Qdrant: [https://qdrant.tech/](https://qdrant.tech/)
 - Supabase: [https://supabase.com/](https://supabase.com/)
+- Ngrok: [https://ngrok.com/](https://ngrok.com/)
